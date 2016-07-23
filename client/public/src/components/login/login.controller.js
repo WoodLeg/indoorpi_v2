@@ -5,17 +5,17 @@
         .module('indoorPi.login')
         .controller('loginController', LoginController);
 
-    LoginController.$inject = ['$log', 'userFactory'];
+    LoginController.$inject = ['$log', 'userFactory', '$state', '$localStorage'];
 
-    function LoginController($log, userFactory){
+    function LoginController($log, userFactory, $state, $localStorage){
 
         var self = this;
         this.user = new Object();
 
         this.submit= function(){
-            $log.debug(self.user);
             userFactory.login(self.user).then(function(response){
-                $log.debug(response);
+                userFactory.setLocal(response.data);
+                $state.go('indoorPi.home');
             }, function(reason){
                 $log.debug(reason);
             });
