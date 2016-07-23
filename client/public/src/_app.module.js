@@ -13,6 +13,8 @@
             'angular-jwt',
 
             // Components
-            'indoorPi.home'
+            'indoorPi.home',
+            'indoorPi.user',
+            'indoorPi.login'
         ]);
 })();

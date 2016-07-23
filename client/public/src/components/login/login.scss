@@ -1,0 +1,30 @@
+.login {
+    margin-top: 150px;
+
+    &__container{
+        padding: 20px 40px;
+        background: white;
+        border-radius: 3px;
+
+        .login{
+            &__title{
+                text-align:center;
+                margin-bottom: 30px;
+            }
+
+            &__form-btn{
+                display: block;
+                margin:0 auto;
+                background: white;
+                color: $main-color;
+                transition: 0.3s all ease;
+                &:hover {
+                    background: lighten($main-color, 10%);
+                    color: white;
+                }
+            }
+
+        }
+    }
+
+}
