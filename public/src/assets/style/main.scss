@@ -1,0 +1,28 @@
+html{
+    margin:0;
+    padding:0;
+    min-height: 100%;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    min-height: 100%;
+    @include metal-gradient();
+
+    color: rgba(48,51,58,1);
+    overflow-x: hidden;
+    #wrap {
+        height: 100%;
+        min-height: 100%;
+
+        .content{
+            height: 100%;
+            .genymotion_player .player {
+                video {
+                    background: url('/assets/img/bootloader_marshmallow_320.gif') no-repeat center;
+                }
+            }
+        }
+    }
+}

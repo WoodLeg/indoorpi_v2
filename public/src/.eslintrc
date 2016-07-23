@@ -1,0 +1,10 @@
+{
+    "rules": {
+      "angular/controller-name": [ 2, "/[a-z][a-zA-Z]+Controller$/"],
+      "angular/controller-as-vm": [ 0 ],
+      "angular/on-watch": [ 0 ],
+      "angular/no-service-method": [ 0 ],
+      "indent": [2, 4, {"SwitchCase": 1}]
+    },
+    "plugins": ["angular"]
+}
