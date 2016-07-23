@@ -9,8 +9,9 @@
 
     function UserService($http, API){
 
+
         this.login = function(user){
-            $http.post(API.URL + API.ENDPOINT.LOGIN, user);
+            return $http.post(API.URL + API.ENDPOINT.LOGIN, user);
         };
 
     }

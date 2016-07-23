@@ -222,10 +222,7 @@ gulp.task('app-js', function() {
             PATHS.SRC.BASE + '/**/*.module.js',
             PATHS.SRC.BASE + '/common/**/*.js',
             PATHS.SRC.BASE + '/components/**/*.js',
-            PATHS.SRC.BASE + '/**/*.js',
-            '!' + PATHS.SRC.BASE + '/app.const.staging.js',
-            '!' + PATHS.SRC.BASE + '/app.const.prod.js',
-            '!' + PATHS.SRC.BASE + '/app.const.local.js'
+            PATHS.SRC.BASE + '/**/*.js'
         ]),
         getAppPartials(),
         getAppI18n()
@@ -246,9 +243,7 @@ gulp.task('app-js:production', function() {
             PATHS.SRC.BASE + '/common/**/*.js',
             PATHS.SRC.BASE + '/components/**/*.js',
             PATHS.SRC.BASE + '/**/*.js',
-            '!' + PATHS.SRC.BASE + '/app.const.dev.js',
-            '!' + PATHS.SRC.BASE + '/app.const.staging.js',
-            '!' + PATHS.SRC.BASE + '/app.const.local.js'
+            '!' + PATHS.SRC.BASE + '/app.const.production.js'
         ]),
         getAppPartials(),
         getAppI18n()
