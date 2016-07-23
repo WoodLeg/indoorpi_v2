@@ -1,21 +1,14 @@
 var express = require('express');
 var router = express.Router();
 
-var rp = require('request-promise');
+var payload = require(__base + 'utils/request.payload.js');
 
-router.post('/', function (request, res){
+router.post('/', function (request, response){
 
-    var options = {
-        method: 'POST',
-        uri: 'http://localhost:7332/login',
-        body: request.body,
-        json: true // Automatically stringifies the body to JSON
-    };
-
-    rp(options).then(function(response){
-        res.status(200).json(response);
+    payload.post('/login', request.body).then(function(bitch){
+        response.status(200).send(bitch);
     }).catch(function(reason){
-        res.status(500).json(reason);
+        response.status(500).send(reason);
     });
 
 });
