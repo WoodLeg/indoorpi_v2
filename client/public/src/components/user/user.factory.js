@@ -17,8 +17,12 @@
         };
 
         userFactory.setLocal = function(user){
-            $localStorage.user = JSON.stringify(user);
+            $localStorage.user = angular.toJson(user);
         };
+
+        userFactory.removeLocal = function(){
+            $localStorage.$reset();
+        }
 
         return userFactory;
 

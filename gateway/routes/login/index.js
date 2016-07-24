@@ -6,7 +6,7 @@ var payload = require(__base + 'utils/request.payload.js');
 router.post('/', function (request, response){
 
     payload.post('/login', request.body).then(function(bitch){
-        response.setHeader('authorization', 'Bearer ' + bitch.token);
+        response.header('Authorization', 'Bearer ' + bitch.token);
         response.status(200).send(bitch);
     }).catch(function(reason){
         response.status(500).send(reason);

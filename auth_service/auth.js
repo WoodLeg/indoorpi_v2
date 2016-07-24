@@ -6,10 +6,12 @@ var morgan = require('morgan');
 
 var settings = require('./server.settings.js');
 var controller = require('./controller');
+var headers = require('./middlewares/headers');
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
-
+app.use(headers.options);
+app.use(headers.default);
 
 app.post('/login', controller.login);
 

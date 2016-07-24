@@ -5,16 +5,15 @@ var app = express();
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var settings = require('./server.config.js');
-var cors = require('cors');
 
 var mainRouter = require('./routes');
+var headers = require('./middlewares/headers');
 
 
-app.options('*', cors());
-app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
-
+app.use(headers.options);
+app.use(headers.default);
 
 
 app.use(mainRouter);

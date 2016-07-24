@@ -5,10 +5,17 @@
         .module('indoorPi.home')
         .controller('homeController', HomeController);
 
-    HomeController.$inject = [];
+    HomeController.$inject = ['userFactory', '$state'];
 
-    function HomeController(){
-        
+    function HomeController(userFactory, $state){
+
+        var self = this;
+
+        this.logout = function(){
+            userFactory.removeLocal();
+            $state.go('indoorPi.login');
+        }
+
     }
 
 

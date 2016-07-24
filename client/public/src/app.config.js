@@ -2,13 +2,19 @@
     'use strict';
 
     angular
-    .module('indoorPi')
-    .config(config)
-    .run(run);
+        .module('indoorPi')
+        .config(config)
+        .run(run);
 
-    config.$inject = ['$locationProvider'];
-    function config($locationProvider) {
+    config.$inject = ['$locationProvider', '$httpProvider'];
+    function config($locationProvider, $httpProvider) {
         $locationProvider.html5Mode(true).hashPrefix('!');
+
+        $httpProvider.interceptors.push('userInterceptor');
+
+
+
+
     }
 
 
@@ -39,7 +45,7 @@
         //             // Do nothing if authenticated
         //         }, function() {
         //             // Redirect to signin otherwise
-        //             $state.go('indoorPi.signin');
+        //             $state.go('indoorPi.login');
         //         });
         //     }
         //
