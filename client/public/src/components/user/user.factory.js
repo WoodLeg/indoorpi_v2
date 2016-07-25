@@ -22,7 +22,7 @@
 
         userFactory.removeLocal = function(){
             $localStorage.$reset();
-        }
+        };
 
         return userFactory;
 

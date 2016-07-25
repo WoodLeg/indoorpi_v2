@@ -1,11 +1,10 @@
 var express = require('express');
-var faye = require('faye');
 var router = express.Router();
 
 var payload = require(__base + 'utils/request.payload.js');
 
 
-var client = new faye.Client('http://localhost:8000');
+var client = require(__base + 'utils/pubsub.js');
 
 
 module.exports = client;

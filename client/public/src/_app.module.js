@@ -11,6 +11,7 @@
             'ngStorage',
             'ngMessages',
             'angular-jwt',
+            'ngWebSocket',
 
             // Components
             'indoorPi.home',

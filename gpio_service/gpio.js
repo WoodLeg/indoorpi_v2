@@ -7,6 +7,9 @@ var client = new faye.Client('http://localhost:8000');
 
 client.subscribe('/gpio/on', function(message){
     console.log('[*] Start gpio: ', message);
+
+    client.publish('/gpio/on/response', {msg: 'Yeah bitch ! '});
+
 });
 
 client.subscribe('/gpio/off', function(message){

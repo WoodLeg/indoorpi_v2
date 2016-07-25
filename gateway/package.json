@@ -10,7 +10,8 @@
     "faye": "^1.2.2",
     "morgan": "^1.7.0",
     "request": "^2.74.0",
-    "request-promise": "^4.0.2"
+    "request-promise": "^4.0.2",
+    "websocket": "^1.0.23"
   },
   "devDependencies": {},
   "scripts": {
