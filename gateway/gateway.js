@@ -6,17 +6,23 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var settings = require('./server.config.js');
 
+
+
 var mainRouter = require('./routes');
 var headers = require('./middlewares/headers');
 
 
+/***** REST API ******/
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(headers.options);
 app.use(headers.default);
 
-
 app.use(mainRouter);
+
+/****** PUBSUB *******/
+
+
 
 
 

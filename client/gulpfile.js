@@ -335,7 +335,7 @@ gulp.task('serve', ['watch'], function(cb){
             ]
         },
 
-        port: 1337
+        port: 8888
     });
 
     cb();

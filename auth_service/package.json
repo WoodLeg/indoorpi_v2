@@ -10,9 +10,7 @@
   "author": "",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "body-parser": "~1.15.2",
-    "express": "~4.14.0",
-    "jwt-simple": "^0.5.0",
-    "morgan": "~1.7.0"
+    "faye": "^1.2.2",
+    "jwt-simple": "^0.5.0"
   }
 }

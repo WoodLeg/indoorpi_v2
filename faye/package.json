@@ -1,0 +1,14 @@
+{
+  "name": "faye",
+  "version": "1.0.0",
+  "description": "",
+  "main": "pubsub.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "faye": "^1.2.2"
+  },
+  "author": "",
+  "license": "ISC"
+}

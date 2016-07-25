@@ -1,21 +1,22 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var morgan = require('morgan');
+var http = require('http');
+var faye = require('faye');
+var jwt = require('jwt-simple');
 
+var server = http.createServer();
+var client = new faye.Client('http://localhost:8000');
 
 var settings = require('./server.settings.js');
-var controller = require('./controller');
-var headers = require('./middlewares/headers');
 
-app.use(morgan('dev'));
-app.use(bodyParser.json());
-app.use(headers.options);
-app.use(headers.default);
+client.subscribe('/auth/login', function(user){
+    console.log('[*] Received auth: ', user);
 
-app.post('/login', controller.login);
+    var encoded_user = jwt.encode(user, settings.jwt.secret);
+    var response = {token : encoded_user, user: user};
+
+    client.publish('/auth/response', response);
+});
 
 
-app.listen(settings.server.port, function(){
+server.listen(settings.server.port, function(){
     console.log('Auth microservice listening on port', settings.server.port);
 });
