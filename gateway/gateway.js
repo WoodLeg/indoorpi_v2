@@ -26,6 +26,8 @@ app.use(mainRouter);
 /****** PUBSUB *******/
 
 
+
+/***** SOcket ********/
 wsServer = new WebSocketServer({
     httpServer: server
 });
@@ -41,7 +43,7 @@ wsServer.on('request', function(request){
     connection.on('message', function(message){
         console.log('[*] Received socket message: ', message);
 
-        client.subscribe('/gpio/on/response', function(message){
+        client.subscribe('/gpio/on', function(message){
             console.log('[*] Receive pubsub message gpio: ', message);
             connection.send(JSON.stringify(message));
         });

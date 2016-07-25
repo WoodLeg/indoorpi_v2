@@ -11,9 +11,6 @@
 
         // var self = this;
 
-        console.log(socket);
-
-
         this.logout = function(){
             userFactory.removeLocal();
             $state.go('indoorPi.login');
