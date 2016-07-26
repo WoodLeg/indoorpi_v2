@@ -4,21 +4,17 @@ var router = express.Router();
 var payload = require(__base + 'utils/request.payload.js');
 
 
-var client = require(__base + 'utils/pubsub.js');
+var pubsub = require(__base + 'utils/pubsub.js');
 
 
-module.exports = client;
+router.use('*', function(request, response, next){
+    pubsub.getResponse(response);
+    next();
+});
 
 router.post('/', function (request, response){
 
-
-    client.subscribe('/auth/response', function(message){
-        response.header('Authorization', 'Bearer ' + message.token);
-        response.status(200).send(message);
-    });
-
-    client.publish('/auth/login', request.body);
-
+    pubsub.publish('/auth/login', request.body);
 
 });
 

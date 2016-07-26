@@ -10,7 +10,7 @@ var morgan = require('morgan');
 var settings = require('./server.config.js');
 
 
-var client = require('./utils/pubsub.js');
+var pubsub = require('./utils/pubsub.js');
 var mainRouter = require('./routes');
 var headers = require('./middlewares/headers');
 
@@ -23,11 +23,7 @@ app.use(headers.default);
 
 app.use(mainRouter);
 
-/****** PUBSUB *******/
-
-
-
-/***** SOcket ********/
+/***** Socket ********/
 wsServer = new WebSocketServer({
     httpServer: server
 });
@@ -36,6 +32,8 @@ wsServer.on('request', function(request){
     var connection = request.accept('echo-protocol', request.origin);
     console.log('Connection Accepted');
 
+    pubsub.getSocket(connection);
+
     connection.on('close', function(){
         console.log('echo-protocol Connection Closed');
     });
@@ -43,12 +41,7 @@ wsServer.on('request', function(request){
     connection.on('message', function(message){
         console.log('[*] Received socket message: ', message);
 
-        client.subscribe('/gpio/on', function(message){
-            console.log('[*] Receive pubsub message gpio: ', message);
-            connection.send(JSON.stringify(message));
-        });
-
-        client.publish('/gpio/on', message);
+        pubsub.publish('/gpio/on', message);
 
     });
 
