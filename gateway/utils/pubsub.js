@@ -21,7 +21,7 @@ pubsub.publish = function(queue, message){
 
 client.subscribe('/gpio/on', function(message){
     console.log('[*] Receive pubsub message gpio: ', message);
-    socket.send(JSON.stringify(message));
+    socket.broadcast(JSON.stringify(message));
 });
 
 client.subscribe('/auth/response', function(message){

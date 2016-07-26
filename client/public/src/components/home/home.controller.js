@@ -16,7 +16,7 @@
             $state.go('indoorPi.login');
         };
 
-        this.gpioOn = function(){
+        this.switchGpio = function(){
             socket.send({msg: 'Switch gpio'});
         };
 
