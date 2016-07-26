@@ -4,18 +4,17 @@ var http = require('http');
 var server = http.createServer();
 var client = new faye.Client('http://localhost:8000');
 
+var process = require('./utils/process');
 
-client.subscribe('/gpio/on', function(message){
-    console.log('[*] Start gpio: ', message);
 
-    client.publish('/gpio/on/response', {msg: 'Yeah bitch ! '});
+client.subscribe('/gpio', function(message){
+    console.log('[*] gpio: ', message);
+
+    process.command(message, function(){
+        client.publish('/gpio/response', {msg: 'Yeah bitch ! '});
+    });
 
 });
-
-client.subscribe('/gpio/off', function(message){
-    console.log('[*] Stop gpio: ', message);
-});
-
 
 
 server.listen(8879, function(){

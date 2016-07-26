@@ -19,7 +19,7 @@ pubsub.publish = function(queue, message){
 
 /**** PUBSUB SUBSCRIPTION *****/
 
-client.subscribe('/gpio/on', function(message){
+client.subscribe('/gpio/response', function(message){
     console.log('[*] Receive pubsub message gpio: ', message);
     socket.broadcast(JSON.stringify(message));
 });

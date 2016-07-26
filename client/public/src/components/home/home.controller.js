@@ -17,7 +17,7 @@
         };
 
         this.switchGpio = function(){
-            socket.send({msg: 'Switch gpio'});
+            socket.send(angular.toJson({type: 'gpio', command: 'switch', id: 0}));
         };
 
         socket.onMessage(function(message){

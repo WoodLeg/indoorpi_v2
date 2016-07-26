@@ -12,6 +12,7 @@ var settings = require('./server.config.js');
 
 
 var pubsub = require('./utils/pubsub.js');
+var wsRouter = require('./utils/websocket.router.js');
 var mainRouter = require('./routes');
 var headers = require('./middlewares/headers');
 
@@ -41,7 +42,9 @@ wss.on('connection', function(ws){
 
     ws.on('message', function(message){
         console.log('[*] Socket message received: ', message);
-        pubsub.publish('/gpio/on', message);
+        wsRouter(message, function(err){
+            if (err) ws.send(err);
+        });
     });
 
     ws.on('close', function(){
