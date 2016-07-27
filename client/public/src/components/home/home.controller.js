@@ -5,9 +5,9 @@
         .module('indoorPi.home')
         .controller('homeController', HomeController);
 
-    HomeController.$inject = ['userFactory', '$state', 'socket', '$log', 'socketFactory'];
+    HomeController.$inject = ['userFactory', '$state', 'socket', '$log', 'socketFactory', '$scope'];
 
-    function HomeController(userFactory, $state, socket, $log, socketFactory){
+    function HomeController(userFactory, $state, socket, $log, socketFactory, $scope){
 
         var self = this;
 
@@ -22,12 +22,15 @@
             state: false
         };
 
+
         this.switchGpio = function(entity){
             socketFactory.send({type: 'gpio', command: 'switch', entity: entity});
         };
 
         socket.onMessage(function(message){
-            $log.debug(angular.fromJson(message.data));
+            message = angular.fromJson(message.data);
+            console.log(message);
+            self.entity = message.data.entity;
         });
 
     }
