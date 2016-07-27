@@ -1,13 +1,14 @@
-var pubsub = require('./pubsub.js');
+var Pubsub = require('./pubsub.js');
+var Message = require('./socket.payload.js');
 
-module.exports = function(message, cb){
+module.exports = function(data, cb){
 
-    message = JSON.parse(message);
+    data = Message.removeBearer(JSON.parse(data));
+    var payload = Message.bus_payload(data);
 
-
-    switch(message.data.type){
+    switch(payload.message.data.type){
         case 'gpio':
-            pubsub.publish('/gpio', message);
+            Pubsub.publish('/gpio', payload);
             cb(null);
             break;
         default:

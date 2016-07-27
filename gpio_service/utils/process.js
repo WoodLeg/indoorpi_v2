@@ -1,11 +1,11 @@
-module.exports.command = function(message, cb){
+module.exports.command = function(bus, cb){
 
-    console.log('[*] Command requested: ', message.command);
+    console.log('[*] Command requested: ', bus.message.data.command);
 
-    switch (message.data.command){
+    switch (bus.message.data.command){
         case 'switch':
             // Trigger gpio action
-            cb();
+            cb(bus);
             break;
         default:
             cb(err);

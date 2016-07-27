@@ -7,13 +7,13 @@ var client = new faye.Client('http://localhost:8000');
 var process = require('./utils/process');
 
 
-client.subscribe('/gpio', function(message){
-    console.log('[*] gpio: ', message);
-
-    process.command(message, function(){
-        client.publish('/gpio/response', {msg: 'Yeah bitch ! '});
-    });
-
+client.subscribe('/gpio', function(bus){
+    if (bus.status === 'todo'){
+        process.command(bus, function(data){
+            data.status = 'done';
+            client.publish('/gpio', data);
+        });
+    }
 });
 
 

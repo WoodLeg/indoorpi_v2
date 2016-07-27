@@ -1,4 +1,5 @@
 var faye = require('faye');
+var Message = require('./socket.payload.js');
 
 var pubsub = {};
 var client = new faye.Client('http://localhost:8000');
@@ -14,15 +15,16 @@ pubsub.getResponse = function(_response){
 };
 
 pubsub.publish = function(queue, message){
-    console.log('------- message: ', message);
     client.publish(queue, message);
 };
 
 /**** PUBSUB SUBSCRIPTION *****/
 
-client.subscribe('/gpio/response', function(message){
-    console.log('[*] Receive pubsub message gpio: ', message);
-    socket.broadcast(JSON.stringify(message));
+client.subscribe('/gpio', function(bus){
+    if (bus.status === 'done'){
+        bus = Message.unwrap(bus);
+        socket.broadcast(JSON.stringify(bus));
+    }
 });
 
 client.subscribe('/auth/response', function(message){
