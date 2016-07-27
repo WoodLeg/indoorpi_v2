@@ -3,9 +3,14 @@
 
     angular
         .module('indoorPi')
-        .factory('socket', Socket);
+        .factory('socket', Socket)
+        .factory('socketFactory', SocketFactory)
+        .service('socketService', SocketService);
 
+    SocketFactory.$inject = ['userFactory', 'socketService'];
+    SocketService.$inject = ['socket'];
     Socket.$inject = ['$websocket'];
+
 
     function Socket($websocket){
 
@@ -14,5 +19,30 @@
         return dataStream;
     }
 
+
+    function SocketFactory(userFactory, socketService){
+
+        var socketFactory = {};
+
+        socketFactory.send = function(req) {
+            var payload = {
+                token: userFactory.getToken(),
+                data: req
+            };
+
+            socketService.send(payload);
+        };
+
+
+        return socketFactory;
+    }
+
+    function SocketService(socket){
+
+        this.send = function(req){
+            socket.send(req);
+        };
+
+    }
 
 })();

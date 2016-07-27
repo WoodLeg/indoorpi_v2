@@ -1,9 +1,19 @@
 <div class="home">
-    <div class="home__title col-md-4 col-md-offset-4 ">
-        <h1>IndoorPi</h1>
+    <div class="home__title col-sm-12">
+        <h1 class="pull-left">IndoorPi</h1>
 
-        <button type="button" class="btn" ng-click="ctrl.logout()" name="button">Logout </button>
-        <button type="button" class="btn" ng-click="ctrl.switchGpio()" name="button">Switch gpio</button>
+        <button type="button" class="home__btn btn pull-right" ng-click="ctrl.logout()" name="button">Logout </button>
+
+
+
+    </div>
+
+    <div class="home__switches col-sm-12">
+
+        <div ng-click="ctrl.switchGpio(ctrl.entity)">
+            <switch ng-model="ctrl.entity.state"></switch>
+        </div>
+
     </div>
 
 </div>

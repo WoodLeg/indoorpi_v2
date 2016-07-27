@@ -20,6 +20,10 @@
             $localStorage.user = angular.toJson(user);
         };
 
+        userFactory.getToken = function(){
+            return $localStorage.token;
+        };
+
         userFactory.removeLocal = function(){
             $localStorage.$reset();
         };

@@ -12,6 +12,7 @@
             'ngMessages',
             'angular-jwt',
             'ngWebSocket',
+            'uiSwitch',
 
             // Components
             'indoorPi.home',

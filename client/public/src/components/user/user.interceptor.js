@@ -12,7 +12,7 @@
         return {
             request: function(config) {
                 config.headers = config.headers || {};
-                var token = $localStorage.userToken;
+                var token = $localStorage.token;
                 if (token) {
                     config.headers.Authorization = 'Bearer ' + token;
                 }
@@ -20,7 +20,7 @@
             },
             response: function(response){
                 if(response.headers('Authorization')){
-                    $localStorage.userToken = response.headers('Authorization');
+                    $localStorage.token = response.headers('Authorization');
                 }
                 return response || $q.when(response);
             },

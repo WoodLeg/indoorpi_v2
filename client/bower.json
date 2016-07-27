@@ -27,6 +27,7 @@
     "bootstrap-sass": "3.3.4",
     "ngstorage": "^0.3.10",
     "angular-cookies": "^1.5.7",
-    "angular-websocket": "^2.0.0"
+    "angular-websocket": "^2.0.0",
+    "angular-ui-switch": "^0.1.1"
   }
 }

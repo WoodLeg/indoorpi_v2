@@ -14,6 +14,7 @@ pubsub.getResponse = function(_response){
 };
 
 pubsub.publish = function(queue, message){
+    console.log('------- message: ', message);
     client.publish(queue, message);
 };
 

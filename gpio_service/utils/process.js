@@ -1,8 +1,8 @@
 module.exports.command = function(message, cb){
 
-    console.log('[*] Command requested: ', message);
+    console.log('[*] Command requested: ', message.command);
 
-    switch (message.command){
+    switch (message.data.command){
         case 'switch':
             // Trigger gpio action
             cb();

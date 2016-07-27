@@ -5,23 +5,29 @@
         .module('indoorPi.home')
         .controller('homeController', HomeController);
 
-    HomeController.$inject = ['userFactory', '$state', 'socket'];
+    HomeController.$inject = ['userFactory', '$state', 'socket', '$log', 'socketFactory'];
 
-    function HomeController(userFactory, $state, socket){
+    function HomeController(userFactory, $state, socket, $log, socketFactory){
 
-        // var self = this;
+        var self = this;
+
 
         this.logout = function(){
             userFactory.removeLocal();
             $state.go('indoorPi.login');
         };
 
-        this.switchGpio = function(){
-            socket.send(angular.toJson({type: 'gpio', command: 'switch', id: 0}));
+        this.entity = {
+            id: 0,
+            state: false
+        };
+
+        this.switchGpio = function(entity){
+            socketFactory.send({type: 'gpio', command: 'switch', entity: entity});
         };
 
         socket.onMessage(function(message){
-            console.log(angular.fromJson(message.data));
+            $log.debug(angular.fromJson(message.data));
         });
 
     }
