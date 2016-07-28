@@ -37,18 +37,18 @@ wss.broadcast = function (data) {
 
 wss.on('connection', function(ws){
     var location = url.parse(ws.upgradeReq.url, true);
-    console.log('New connection');
+    console.log('New connection: ', ws.upgradeReq.connection.remoteAddress);
     pubsub.getSocket(wss);
 
     ws.on('message', function(message){
-        console.log('[*] Socket message received: ', message);
+        console.log('[*] Socket message received from: ', ws.upgradeReq.connection.remoteAddress);
         wsRouter(message, function(err){
             if (err) ws.send(err);
         });
     });
 
     ws.on('close', function(){
-        console.log('Connection stopped');
+        console.log('Connection stopped for: ', ws.upgradeReq.connection.remoteAddress);
     });
 });
 

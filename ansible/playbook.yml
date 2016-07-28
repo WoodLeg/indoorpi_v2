@@ -1,0 +1,44 @@
+---
+-   name: Installation du Microservice GPIO
+    hosts: geny
+    remote_user: pi
+
+
+    tasks:
+
+        - name: Couper le service gpio
+          command: pm2 delete gpio
+
+        - name: Suppression du dossier indoorpi_v2
+          file: path=/home/pi/indoorpi_v2 state=absent
+
+        - name: Clonage du repo
+          git: repo=git@github.com:WoodLeg/indoorpi_v2.git dest=/home/pi/indoorpi_v2
+
+        - name: Suppression du dossier auth_service
+          file: path=/home/pi/indoorpi_v2/auth_service state=absent
+
+        - name: Suppression du dossier ansible
+          file: path=/home/pi/indoorpi_v2/ansible state=absent
+
+        - name: Suppression du dossier client
+          file: path=/home/pi/indoorpi_v2/client state=absent
+
+        - name: Suppression du dossier gateway
+          file: path=/home/pi/indoorpi_v2/gateway state=absent
+
+        - name: Suppression du dossier faye
+          file: path=/home/pi/indoorpi_v2/faye state=absent
+
+        - name: Récupération des dépendances
+          npm: path=/home/pi/indoorpi_v2/gpio_service state=present
+
+        - name: Copie du fichier de config
+          template: src=template/config.j2 dest=/home/pi/indoorpi_v2/gpio_service/config.js
+
+        - name: Lancement du microservice
+          command: pm2 start /home/pi/indoorpi_v2/gpio_service/gpio.js
+
+
+
+...

@@ -5,7 +5,6 @@ module.exports.command = function(bus, cb){
     switch (bus.message.data.command){
         case 'switch':
             // Trigger gpio action
-            console.log(bus.message.data.entity.state);
             cb(bus);
             break;
         default:

@@ -2,7 +2,8 @@ var faye = require('faye');
 var http = require('http');
 
 var server = http.createServer();
-var client = new faye.Client('http://localhost:8000');
+var settings = require('./config.js');
+var client = new faye.Client(settings.faye.address + ':' + settings.faye.port);
 
 var process = require('./utils/process');
 
