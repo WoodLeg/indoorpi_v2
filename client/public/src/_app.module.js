@@ -17,6 +17,7 @@
             // Components
             'indoorPi.home',
             'indoorPi.user',
-            'indoorPi.login'
+            'indoorPi.login',
+            'indoorPi.menu'
         ]);
 })();

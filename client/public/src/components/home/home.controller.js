@@ -5,21 +5,37 @@
         .module('indoorPi.home')
         .controller('homeController', HomeController);
 
-    HomeController.$inject = ['userFactory', '$state', 'socket', '$log', 'socketFactory', '$scope'];
+    HomeController.$inject = ['userFactory', '$state', 'socket', '$log', 'socketFactory'];
 
-    function HomeController(userFactory, $state, socket, $log, socketFactory, $scope){
+    function HomeController(userFactory, $state, socket, $log, socketFactory){
 
         var self = this;
 
 
-        this.logout = function(){
-            userFactory.removeLocal();
-            $state.go('indoorPi.login');
-        };
+        this.switches = [
+            {
+                id: 0,
+                state: false,
+                pin: 3
+            },
+            {
+                id: 1,
+                state: true,
+                pin: 4
+            },
+            {
+                id: 2,
+                state: false,
+                pin: 5
+            },
+            {
+                id: 3,
+                state: true,
+                pin: 6
+            }
+        ];
 
         this.entity = {
-            id: 0,
-            state: false
         };
 
 

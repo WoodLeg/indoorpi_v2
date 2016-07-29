@@ -1,18 +1,34 @@
+<menu></menu>
 <div class="home">
-    <div class="home__title col-sm-12">
-        <h1 class="pull-left">IndoorPi</h1>
-
-        <button type="button" class="home__btn btn pull-right" ng-click="ctrl.logout()" name="button">Logout </button>
-
-
-
-    </div>
 
     <div class="home__switches col-sm-12">
+        <h1>Switches</h1>
 
-        <div ng-click="ctrl.switchGpio(ctrl.entity)">
-            <switch ng-model="ctrl.entity.state"></switch>
-        </div>
+        <table class="table">
+          <thead>
+              <tr>
+                  <th>Id</th>
+                  <th>Pin</th>
+                  <th>Status</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr ng-repeat="switch in ctrl.switches">
+                  <td>
+                      {{switch.id}}
+                  </td>
+                  <td>
+                      {{ switch.pin }}
+                  </td>
+                  <td>
+                      <div ng-click="ctrl.switchGpio(switch)">
+                          <switch ng-model="switch.state"></switch>
+                      </div>
+                  </td>
+              </tr>
+          </tbody>
+        </table>
+
 
     </div>
 
