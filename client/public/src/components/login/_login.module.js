@@ -17,6 +17,9 @@
                         templateUrl: '/src/components/login/login.html',
                         controller: 'loginController as ctrl'
                     }
+                },
+                data: {
+                    page: 'login'
                 }
             });
 

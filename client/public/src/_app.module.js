@@ -18,6 +18,7 @@
             'indoorPi.home',
             'indoorPi.user',
             'indoorPi.login',
-            'indoorPi.menu'
+            'indoorPi.menu',
+            'indoorPi.relays'
         ]);
 })();

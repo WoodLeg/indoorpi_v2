@@ -1,10 +1,8 @@
 (function(){
     'use strict';
 
-
-
     angular
-        .module('indoorPi.home', [])
+        .module('indoorPi.relays', [])
         .config(config);
 
     config.$inject = ['$stateProvider'];
@@ -12,19 +10,20 @@
     function config($stateProvider){
 
         $stateProvider
-            .state('indoorPi.home', {
-                url: '/home',
+            .state('indoorPi.relays', {
+                url: '/relays',
                 views: {
                     'content@': {
-                        templateUrl: '/src/components/home/home.html',
-                        controller: 'homeController as ctrl'
+                        templateUrl: '/src/components/relays/relays.html',
+                        controller: 'relaysController as ctrl'
                     }
                 },
                 data: {
-                    page: 'home'
+                    page: 'relays'
                 }
             });
 
     }
+
 
 })();

@@ -1,0 +1,37 @@
+<menu></menu>
+<div class="relays">
+
+
+    <div class="relays__switches col-sm-12">
+        <h1>Relays</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Id</th>
+                    <th>Pin</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="relay in ctrl.relays">
+                    <td>
+                        {{ relay.name }}
+                    </td>
+                    <td>
+                        {{ relay.id }}
+                    </td>
+                    <td>
+                        {{ relay.pin }}
+                    </td>
+                    <td>
+                        <div ng-click="ctrl.switchGpio(switch)">
+                            <switch ng-model="relay.state"></switch>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

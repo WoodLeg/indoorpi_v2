@@ -14,6 +14,10 @@
             $state.go('indoorPi.login');
         };
 
+        this.goToPage = function(page) {
+            $state.go('indoorPi.' + page);
+        };
+
     }
 
 

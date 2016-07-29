@@ -2,33 +2,9 @@
 <div class="home">
 
     <div class="home__switches col-sm-12">
-        <h1>Switches</h1>
+        <h1>Best growing platform ever</h1>
 
-        <table class="table">
-          <thead>
-              <tr>
-                  <th>Id</th>
-                  <th>Pin</th>
-                  <th>Status</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr ng-repeat="switch in ctrl.switches">
-                  <td>
-                      {{switch.id}}
-                  </td>
-                  <td>
-                      {{ switch.pin }}
-                  </td>
-                  <td>
-                      <div ng-click="ctrl.switchGpio(switch)">
-                          <switch ng-model="switch.state"></switch>
-                      </div>
-                  </td>
-              </tr>
-          </tbody>
-        </table>
-
+        
 
     </div>
 
