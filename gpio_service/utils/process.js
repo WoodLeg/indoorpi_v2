@@ -10,7 +10,7 @@ module.exports.command = function(bus, cb){
             cb(bus);
             break;
         case 'list':
-            bus.message.data = mock();
+            bus.message.data.entities = mock();
             cb(bus);
             break;
         default:

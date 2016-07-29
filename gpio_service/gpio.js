@@ -12,7 +12,6 @@ client.subscribe('/gpio', function(bus){
     if (bus.status === 'todo'){
         process.command(bus, function(data){
             data.status = 'done';
-            console.log(data);
             client.publish('/gpio', data);
         });
     }

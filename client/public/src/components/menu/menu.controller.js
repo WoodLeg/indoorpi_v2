@@ -5,9 +5,9 @@
         .module('indoorPi.menu')
         .controller('menuController', MenuController);
 
-    MenuController.$inject = [];
+    MenuController.$inject = ['$state','userFactory'];
 
-    function MenuController(){
+    function MenuController($state, userFactory){
 
         this.logout = function(){
             userFactory.removeLocal();

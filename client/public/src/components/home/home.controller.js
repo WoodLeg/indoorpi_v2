@@ -24,9 +24,29 @@
 
         socket.onMessage(function(message){
             message = angular.fromJson(message.data);
-            console.log(message);
-            self.switches = message.data;
+            socketFactory.processMessage(message, function(command, data){
+                switch (command){
+                    case 'list':
+                        self.switches = data.entities;
+                        break;
+                    case 'switch':
+                        updateUniqueGpio(data.entity);
+                        break;
+                    default:
+                        console.log('Error ProcessMessage');
+                }
+            });
         });
+
+        /****** UTILS FUNCS *******/
+
+        function updateUniqueGpio(object){
+            angular.forEach(self.switches, function(entity, key){
+                if (entity.id === object.id){
+                    self.switches[key] = object;
+                }
+            });
+        }
 
     }
 
