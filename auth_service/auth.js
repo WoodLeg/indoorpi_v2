@@ -8,7 +8,7 @@ var client = new faye.Client('http://localhost:8000');
 var settings = require('./server.settings.js');
 
 client.subscribe('/auth/login', function(user){
-    console.log('[*] Received: ', user);
+    console.log('[*] Received authentication request: ', user);
 
     var encoded_user = jwt.encode(user, settings.jwt.secret);
     var response = {token : encoded_user, user: user};

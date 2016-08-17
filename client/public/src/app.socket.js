@@ -30,11 +30,11 @@
                 data: req
             };
 
+            console.log(payload);
             socketService.send(payload);
         };
 
         socketFactory.processMessage = function(object,cb){
-            console.log(object);
             cb(object.data.command, object.data);
         };
 

@@ -12,6 +12,7 @@ var settings = require('./server.config.js');
 
 
 var pubsub = require('./utils/pubsub.js');
+var socketUtil = require('./utils/socket.payload.js');
 var wsRouter = require('./utils/websocket.router.js');
 var mainRouter = require('./routes');
 var headers = require('./middlewares/headers');
@@ -38,7 +39,8 @@ wss.broadcast = function (data) {
 wss.on('connection', function(ws){
     var location = url.parse(ws.upgradeReq.url, true);
     console.log('New connection: ', ws.upgradeReq.connection.remoteAddress);
-    pubsub.getSocket(wss);
+    pubsub.getSockets(wss);
+    socketUtil.setSocket(ws);
 
     ws.on('message', function(message){
         console.log('[*] Socket message received from: ', ws.upgradeReq.connection.remoteAddress);

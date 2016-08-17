@@ -3,11 +3,11 @@ var Message = require('./socket.payload.js');
 
 var pubsub = {};
 var client = new faye.Client('http://localhost:8000');
-var socket;
+var sockets;
 var response;
 
-pubsub.getSocket = function(connection){
-    socket = connection;
+pubsub.getSockets = function(connection){
+    sockets = connection;
 };
 
 pubsub.getResponse = function(_response){
@@ -23,7 +23,7 @@ pubsub.publish = function(queue, message){
 client.subscribe('/gpio', function(bus){
     if (bus.status === 'done'){
         bus = Message.unwrap(bus);
-        socket.broadcast(JSON.stringify(bus));
+        sockets.broadcast(JSON.stringify(bus));
     }
 });
 
